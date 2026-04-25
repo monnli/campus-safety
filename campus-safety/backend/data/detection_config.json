@@ -1,0 +1,12 @@
+{
+  "confidence": 0.95,
+  "frameSkip": 3,
+  "cooldown": 30,
+  "preSeconds": 5,
+  "postSeconds": 5,
+  "dangerClasses": [
+    "fighting",
+    "falling",
+    "intrusion"
+  ]
+}

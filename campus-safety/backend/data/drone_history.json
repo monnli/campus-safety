@@ -1,0 +1,67 @@
+[
+  {
+    "time": "2026-04-16T21:19:55.768920",
+    "waypoints_count": 28,
+    "flight_info": {
+      "total_waypoints": 28,
+      "total_distance_m": 15440,
+      "total_distance_km": 15.44,
+      "estimated_time_min": 51.5,
+      "routes_count": 4,
+      "speed_ms": 5,
+      "waypoint_interval_m": 100
+    }
+  },
+  {
+    "time": "2026-04-16T14:40:28.953751",
+    "waypoints_count": 23,
+    "flight_info": {
+      "total_waypoints": 23,
+      "total_distance_m": 2811,
+      "total_distance_km": 2.81,
+      "estimated_time_min": 9.4,
+      "routes_count": 3,
+      "speed_ms": 5,
+      "waypoint_interval_m": 100
+    }
+  },
+  {
+    "time": "2026-04-14T17:39:44.119804",
+    "waypoints_count": 7,
+    "flight_info": {
+      "total_waypoints": 7,
+      "total_distance_m": 1168,
+      "total_distance_km": 1.17,
+      "estimated_time_min": 3.9,
+      "routes_count": 1,
+      "speed_ms": 5,
+      "waypoint_interval_m": 100
+    }
+  },
+  {
+    "time": "2026-04-14T17:03:09.093527",
+    "waypoints_count": 1,
+    "flight_info": {
+      "total_waypoints": 1,
+      "total_distance_m": 0,
+      "total_distance_km": 0.0,
+      "estimated_time_min": 0.0,
+      "routes_count": 0,
+      "speed_ms": 5,
+      "waypoint_interval_m": 100
+    }
+  },
+  {
+    "time": "2026-04-14T16:53:56.644958",
+    "waypoints_count": 1,
+    "flight_info": {
+      "total_waypoints": 1,
+      "total_distance_m": 0,
+      "total_distance_km": 0.0,
+      "estimated_time_min": 0.0,
+      "routes_count": 0,
+      "speed_ms": 5,
+      "waypoint_interval_m": 100
+    }
+  }
+]

@@ -1,0 +1,363 @@
+{
+  "flight_info": {
+    "estimated_time_min": 51.5,
+    "routes_count": 4,
+    "speed_ms": 5,
+    "total_distance_km": 15.44,
+    "total_distance_m": 15440,
+    "total_waypoints": 28,
+    "waypoint_interval_m": 100
+  },
+  "home_routes": [
+    {
+      "name": "路线1",
+      "path": [
+        [
+          106.630367,
+          26.395841
+        ],
+        [
+          106.630195,
+          26.396134
+        ],
+        [
+          106.630029,
+          26.396475
+        ],
+        [
+          106.629949,
+          26.396696
+        ],
+        [
+          106.629777,
+          26.397119
+        ]
+      ]
+    },
+    {
+      "name": "路线2",
+      "path": [
+        [
+          106.630492,
+          26.395355
+        ],
+        [
+          106.630444,
+          26.395413
+        ],
+        [
+          106.630589,
+          26.395197
+        ],
+        [
+          106.630717,
+          26.394959
+        ],
+        [
+          106.630937,
+          26.394738
+        ],
+        [
+          106.631104,
+          26.39458
+        ],
+        [
+          106.631302,
+          26.394416
+        ],
+        [
+          106.631667,
+          26.394306
+        ],
+        [
+          106.63355,
+          26.393729
+        ],
+        [
+          106.635293,
+          26.393061
+        ]
+      ]
+    }
+  ],
+  "school": {
+    "buildings": [
+      {
+        "height": 21,
+        "name": "建筑物1",
+        "polygon": [
+          [
+            106.633019,
+            26.394769
+          ]
+        ]
+      }
+    ],
+    "center": [
+      106.635225,
+      26.395076
+    ],
+    "name": "贵阳信息科技学院"
+  },
+  "settings": {
+    "base_altitude": 30,
+    "building_clearance": 10,
+    "patrol_radius": 1000,
+    "speed": 5,
+    "waypoint_interval": 100
+  },
+  "waypoints": [
+    {
+      "action": "takeoff",
+      "altitude": 30,
+      "id": 0,
+      "label": "起飞点（学校）",
+      "lat": 26.44308,
+      "lng": 106.671133,
+      "route": "学校"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 1,
+      "label": "路线1 航点1",
+      "lat": 26.395841,
+      "lng": 106.630367,
+      "route": "路线1"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 2,
+      "label": "路线1 航点2",
+      "lat": 26.396134,
+      "lng": 106.630195,
+      "route": "路线1"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 3,
+      "label": "路线1 航点3",
+      "lat": 26.396475,
+      "lng": 106.630029,
+      "route": "路线1"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 4,
+      "label": "路线1 航点4",
+      "lat": 26.396696,
+      "lng": 106.629949,
+      "route": "路线1"
+    },
+    {
+      "action": "hover",
+      "altitude": 30,
+      "id": 5,
+      "label": "路线1 航点5",
+      "lat": 26.397119,
+      "lng": 106.629777,
+      "route": "路线1"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 6,
+      "label": "路线2 航点1",
+      "lat": 26.395355,
+      "lng": 106.630492,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 7,
+      "label": "路线2 航点2",
+      "lat": 26.395413,
+      "lng": 106.630444,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 8,
+      "label": "路线2 航点3",
+      "lat": 26.395197,
+      "lng": 106.630589,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 9,
+      "label": "路线2 航点4",
+      "lat": 26.394959,
+      "lng": 106.630717,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 10,
+      "label": "路线2 航点5",
+      "lat": 26.394738,
+      "lng": 106.630937,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 11,
+      "label": "路线2 航点6",
+      "lat": 26.39458,
+      "lng": 106.631104,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 12,
+      "label": "路线2 航点7",
+      "lat": 26.394416,
+      "lng": 106.631302,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 13,
+      "label": "路线2 航点8",
+      "lat": 26.394306,
+      "lng": 106.631667,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 14,
+      "label": "路线2 航点9",
+      "lat": 26.393729,
+      "lng": 106.63355,
+      "route": "路线2"
+    },
+    {
+      "action": "hover",
+      "altitude": 30,
+      "id": 15,
+      "label": "路线2 航点10",
+      "lat": 26.393061,
+      "lng": 106.635293,
+      "route": "路线2"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 16,
+      "label": "路线3 航点1",
+      "lat": 26.395688,
+      "lng": 106.630294,
+      "route": "路线3"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 17,
+      "label": "路线3 航点2",
+      "lat": 26.395582,
+      "lng": 106.629693,
+      "route": "路线3"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 18,
+      "label": "路线3 航点3",
+      "lat": 26.395558,
+      "lng": 106.629098,
+      "route": "路线3"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 19,
+      "label": "路线3 航点4",
+      "lat": 26.395558,
+      "lng": 106.628937,
+      "route": "路线3"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 20,
+      "label": "路线3 航点5",
+      "lat": 26.395563,
+      "lng": 106.628749,
+      "route": "路线3"
+    },
+    {
+      "action": "hover",
+      "altitude": 30,
+      "id": 21,
+      "label": "路线3 航点6",
+      "lat": 26.395539,
+      "lng": 106.628749,
+      "route": "路线3"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 22,
+      "label": "路线4 航点1",
+      "lat": 26.396942,
+      "lng": 106.634854,
+      "route": "路线4"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 23,
+      "label": "路线4 航点2",
+      "lat": 26.397384,
+      "lng": 106.636656,
+      "route": "路线4"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 24,
+      "label": "路线4 航点3",
+      "lat": 26.397243333333332,
+      "lng": 106.63767166666666,
+      "route": "路线4"
+    },
+    {
+      "action": "fly",
+      "altitude": 30,
+      "id": 25,
+      "label": "路线4 航点4",
+      "lat": 26.397102666666665,
+      "lng": 106.63868733333334,
+      "route": "路线4"
+    },
+    {
+      "action": "hover",
+      "altitude": 30,
+      "id": 26,
+      "label": "路线4 航点5",
+      "lat": 26.396962,
+      "lng": 106.639703,
+      "route": "路线4"
+    },
+    {
+      "action": "land",
+      "altitude": 30,
+      "id": 27,
+      "label": "返航降落",
+      "lat": 26.44308,
+      "lng": 106.671133,
+      "route": "返航"
+    }
+  ]
+}
