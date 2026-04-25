@@ -67,7 +67,8 @@ if not exist "%ROOT%frontend\node_modules\" (
 )
 
 echo 正在启动后端（新窗口）...
-start "黔视护苗-后端" /D "%ROOT%backend" cmd /k "call \"%CONDA_BAT%\" activate %CONDA_ENV% && python app.py"
+rem 说明：这里用 cmd /k ""..."" 传递包含引号的命令（不要用 \ 来转义引号）。
+start "黔视护苗-后端" /D "%ROOT%backend" cmd /k ""%CONDA_BAT%" activate %CONDA_ENV% && python app.py"
 
 echo 等待后端就绪...
 timeout /t 4 /nobreak >nul
