@@ -57,8 +57,73 @@ def init_db():
         # _get_conn 内已保证建表，这里只做一次连接验证
         conn.close()
 
+def _seed_demo_events_if_empty():
+    """
+    若数据库为空，为演示自动生成一批历史事件数据。
+
+    说明：
+    - 仓库不再携带运行时的 events.db（避免把个人/演示机器的数据提交到 GitHub）。
+    - 为了“开箱即用”的演示效果，在全新空库时自动写入少量样例事件，供「事件记录/统计」展示。
+    - 如不需要样例数据：删除 backend/data/events.db 后，设置环境变量 SEED_DEMO_DATA=false 再启动。
+    """
+    seed_flag = os.getenv("SEED_DEMO_DATA", "true").lower() == "true"
+    if not seed_flag:
+        return
+
+    from datetime import timedelta
+
+    demo = []
+    now = datetime.now()
+    cameras = [
+        ("cam_001", "操场"),
+        ("cam_002", "校门口"),
+        ("cam_003", "走廊A"),
+        ("cam_004", "走廊B"),
+        ("cam_005", "食堂"),
+    ]
+    behaviors = [
+        ("fighting", 0.93),
+        ("intrusion", 0.88),
+        ("falling", 0.91),
+        ("fighting", 0.86),
+        ("intrusion", 0.82),
+        ("falling", 0.89),
+    ]
+
+    # 生成近 7 天的 24 条样例事件（分布在不同摄像头与时段）
+    for i in range(24):
+        cam_id, cam_name = cameras[i % len(cameras)]
+        behavior, conf = behaviors[i % len(behaviors)]
+        ts = (now - timedelta(days=(i % 7), hours=(i % 12) + 1, minutes=(i * 7) % 60)).replace(microsecond=0)
+        demo.append({
+            "id": str(uuid.uuid4()),
+            "timestamp": ts.isoformat(),
+            "camera_id": cam_id,
+            "camera_name": cam_name,
+            "behavior": behavior,
+            "confidence": float(conf),
+            "clip_path": "",
+            "vl_result": "",
+            "report": "",
+            "status": "pending" if i % 3 else "handled",
+        })
+
+    with _lock:
+        conn = _get_conn()
+        count = conn.execute("SELECT COUNT(1) AS c FROM events").fetchone()["c"]
+        if count and int(count) > 0:
+            conn.close()
+            return
+        conn.executemany("""
+            INSERT INTO events (id, timestamp, camera_id, camera_name, behavior, confidence, clip_path, vl_result, report, status)
+            VALUES (:id, :timestamp, :camera_id, :camera_name, :behavior, :confidence, :clip_path, :vl_result, :report, :status)
+        """, demo)
+        conn.commit()
+        conn.close()
+
 # 启动时初始化
 init_db()
+_seed_demo_events_if_empty()
 
 def add_event(camera_id, camera_name, behavior, confidence, clip_path, vl_result, report):
     event = {
