@@ -84,5 +84,15 @@ start "" "http://localhost:3000"
 echo.
 echo 已打开两个服务窗口，并已尝试在浏览器打开 http://localhost:3000
 echo 停止运行时请关闭「黔视护苗-后端」「黔视护苗-前端」窗口。
-echo 本窗口 5 秒后自动关闭...
-timeout /t 5 /nobreak >nul
+echo.
+echo 说明：下面这个“启动器”窗口会自动关闭，不代表服务退出。
+echo 若要看启动日志/报错，请保留并查看「黔视护苗-后端」「黔视护苗-前端」两个窗口。
+echo 若希望启动器窗口不自动关闭：先执行 set START_BAT_NO_AUTOCLOSE=1 再运行本脚本，或双击前在 cmd 里运行。
+echo.
+if /i "%START_BAT_NO_AUTOCLOSE%"=="1" (
+    echo 按任意键关闭启动器窗口...
+    pause >nul
+) else (
+    echo 本窗口 8 秒后自动关闭...
+    timeout /t 8 /nobreak >nul
+)
