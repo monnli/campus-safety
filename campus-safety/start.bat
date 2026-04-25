@@ -3,8 +3,35 @@ chcp 65001 >nul
 setlocal
 set "ROOT=%~dp0"
 
-if not exist "%ROOT%backend\venv\Scripts\activate.bat" (
-    echo [错误] 未找到 backend\venv，请先在后端目录执行部署说明中的 venv 与 pip 安装步骤。
+set "CONDA_ENV=campus_env"
+
+rem ---- 定位 conda.bat（用于 activate）----
+set "CONDA_BAT="
+for /f "delims=" %%i in ('where conda 2^>nul') do (
+    set "CAND=%%i"
+    goto :_got_conda
+)
+:_got_conda
+if defined CAND (
+    rem 可能命中 conda.exe 或 conda.bat，统一尝试推导 conda.bat
+    for %%p in ("%CAND%") do set "CAND_DIR=%%~dpp"
+    rem 如果是 condabin\conda.bat，直接用
+    if /i "%CAND%"=="%CAND_DIR%conda.bat" (
+        set "CONDA_BAT=%CAND%"
+    ) else (
+        rem 如果命中 conda.exe，尝试在同级/上级寻找 condabin\conda.bat
+        if exist "%CAND_DIR%..\\condabin\\conda.bat" set "CONDA_BAT=%CAND_DIR%..\\condabin\\conda.bat"
+        if not defined CONDA_BAT if exist "%CAND_DIR%condabin\\conda.bat" set "CONDA_BAT=%CAND_DIR%condabin\\conda.bat"
+        if not defined CONDA_BAT if exist "%CAND_DIR%Scripts\\activate.bat" (
+            rem 退一步：用 activate.bat（在部分安装中存在）
+            set "CONDA_BAT=%CAND_DIR%Scripts\\activate.bat"
+        )
+    )
+)
+
+if not defined CONDA_BAT (
+    echo [错误] 未找到 conda。请先安装 Anaconda/Miniconda，并确保在终端中能运行 conda。
+    echo 你也可以在“Anaconda Prompt”里运行本脚本，或把 conda 加入系统 PATH。
     pause
     exit /b 1
 )
@@ -16,7 +43,7 @@ if not exist "%ROOT%frontend\node_modules\" (
 )
 
 echo 正在启动后端（新窗口）...
-start "黔视护苗-后端" /D "%ROOT%backend" cmd /k "call venv\Scripts\activate.bat && python app.py"
+start "黔视护苗-后端" /D "%ROOT%backend" cmd /k "call \"%CONDA_BAT%\" activate %CONDA_ENV% && python app.py"
 
 echo 等待后端就绪...
 timeout /t 4 /nobreak >nul
