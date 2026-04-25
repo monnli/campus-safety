@@ -9,42 +9,52 @@ from threading import Lock
 DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "events.db")
 _lock = Lock()
 
+def _ensure_schema(conn: sqlite3.Connection):
+    """
+    确保数据库表结构存在。
+
+    说明：有些场景下（例如运行中删除了 events.db，或首次运行刚创建空文件）
+    仅在 import 时 init_db 可能不足，因此在每次获取连接时也做一次兜底建表。
+    """
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS events (
+            id TEXT PRIMARY KEY,
+            timestamp TEXT NOT NULL,
+            camera_id TEXT,
+            camera_name TEXT,
+            behavior TEXT,
+            confidence REAL,
+            clip_path TEXT,
+            vl_result TEXT,
+            report TEXT,
+            status TEXT DEFAULT 'pending'
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS notifications (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            time TEXT,
+            recipient TEXT,
+            phone TEXT,
+            role TEXT,
+            message TEXT,
+            status TEXT,
+            event_id TEXT
+        )
+    """)
+    conn.commit()
+
 def _get_conn():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    _ensure_schema(conn)
     return conn
 
 def init_db():
     with _lock:
         conn = _get_conn()
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS events (
-                id TEXT PRIMARY KEY,
-                timestamp TEXT NOT NULL,
-                camera_id TEXT,
-                camera_name TEXT,
-                behavior TEXT,
-                confidence REAL,
-                clip_path TEXT,
-                vl_result TEXT,
-                report TEXT,
-                status TEXT DEFAULT 'pending'
-            )
-        """)
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS notifications (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                time TEXT,
-                recipient TEXT,
-                phone TEXT,
-                role TEXT,
-                message TEXT,
-                status TEXT,
-                event_id TEXT
-            )
-        """)
-        conn.commit()
+        # _get_conn 内已保证建表，这里只做一次连接验证
         conn.close()
 
 # 启动时初始化
