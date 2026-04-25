@@ -29,6 +29,26 @@ if defined CAND (
     )
 )
 
+rem ---- 若 PATH 中找不到 conda，尝试常见安装路径 ----
+if not defined CONDA_BAT (
+    if exist "%ProgramData%\Anaconda3\condabin\conda.bat" set "CONDA_BAT=%ProgramData%\Anaconda3\condabin\conda.bat"
+)
+if not defined CONDA_BAT (
+    if exist "%ProgramData%\Miniconda3\condabin\conda.bat" set "CONDA_BAT=%ProgramData%\Miniconda3\condabin\conda.bat"
+)
+if not defined CONDA_BAT (
+    if exist "%UserProfile%\Anaconda3\condabin\conda.bat" set "CONDA_BAT=%UserProfile%\Anaconda3\condabin\conda.bat"
+)
+if not defined CONDA_BAT (
+    if exist "%UserProfile%\Miniconda3\condabin\conda.bat" set "CONDA_BAT=%UserProfile%\Miniconda3\condabin\conda.bat"
+)
+if not defined CONDA_BAT (
+    if exist "%LocalAppData%\miniconda3\condabin\conda.bat" set "CONDA_BAT=%LocalAppData%\miniconda3\condabin\conda.bat"
+)
+if not defined CONDA_BAT (
+    if exist "%LocalAppData%\Continuum\anaconda3\condabin\conda.bat" set "CONDA_BAT=%LocalAppData%\Continuum\anaconda3\condabin\conda.bat"
+)
+
 if not defined CONDA_BAT (
     echo [错误] 未找到 conda。请先安装 Anaconda/Miniconda，并确保在终端中能运行 conda。
     echo 你也可以在“Anaconda Prompt”里运行本脚本，或把 conda 加入系统 PATH。
