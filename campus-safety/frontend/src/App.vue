@@ -1,5 +1,5 @@
 <template>
-  <!-- 大屏页面不走主布局 -->
+  <!-- 大屏/登录页不走主布局，但告警弹窗需要全局可见 -->
   <router-view v-if="$route.meta.fullscreen || $route.meta.public" />
 
   <el-container v-else class="app-container">
@@ -67,9 +67,11 @@
       </el-main>
     </el-container>
 
-    <AlarmDialog v-if="alarm" :alarm="alarm" @close="clearAlarm" />
     <OnboardingGuide v-if="isLoggedIn" />
   </el-container>
+
+  <!-- 告警弹窗：无论是否 fullscreen，都需要显示（但要求已登录） -->
+  <AlarmDialog v-if="isLoggedIn && alarm" :alarm="alarm" @close="clearAlarm" />
 </template>
 
 <script setup>
