@@ -36,6 +36,7 @@ campus-safety/backend/static/alerts/
 campus-safety/backend/static/recordings/
 campus-safety/backend/static/uploads/
 campus-safety/backend/data/session.json
+campus-safety/backend/data/events.db
 
 # OS
 .DS_Store
