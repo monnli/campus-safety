@@ -10,3 +10,4 @@ gevent>=24.2.1
 gevent-websocket>=0.10.1
 python-dotenv>=1.0.1
 requests>=2.32.3
+pyjwt>=2.0.0
