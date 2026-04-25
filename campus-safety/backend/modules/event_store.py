@@ -243,6 +243,14 @@ def natural_language_query(query_text):
             results = [e for e in results if e["timestamp"].startswith(today)]
             break
 
+    # 区域风险/最危险区域：不做复杂语义解析，返回近期事件供统计（优先危险行为）
+    if any(k in query_text for k in ["区域", "哪里", "哪块", "最危险", "高发", "风险"]) and any(
+        k in query_text for k in ["危险", "风险", "高发", "最多", "严重"]
+    ):
+        danger = {"fighting", "intrusion", "bullying", "falling", "gathering", "person"}
+        risky = [e for e in data if e.get("behavior") in danger]
+        results = risky if risky else data
+
     return results[:20]
 
 def save_notification(record):
