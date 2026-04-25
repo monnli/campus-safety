@@ -56,6 +56,10 @@ if not defined CONDA_BAT (
     exit /b 1
 )
 
+rem ---- 清理可能的引号/转义（例如来自某些终端环境的 \"C:\...\conda.bat\"）----
+set "CONDA_BAT=%CONDA_BAT:\"=%"
+set "CONDA_BAT=%CONDA_BAT:"=%"
+
 if not exist "%ROOT%frontend\node_modules\" (
     echo [错误] 未找到 frontend\node_modules，请先在 frontend 目录执行 npm install。
     pause
